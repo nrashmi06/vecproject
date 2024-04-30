@@ -1,0 +1,74 @@
+/* Resetting default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+}
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh; 
+}
+
+.navbar-container {
+  width: 100%; 
+}
+
+
+.content-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 40px 0; /* Set margin to 40px */
+  width: 100%; /* Make content container stretch across the page */
+}
+.heading {
+  font-size: 2rem;
+  margin-bottom: 20px;
+} 
+.text-content {
+  width: calc(50% - 40px);
+  text-align: center;
+  margin: auto;
+  /* 50% width minus 40px margin */
+}
+
+.image-container {
+  width: calc(50% ); /* 50% width minus 40px margin */
+  max-width: 300px; 
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  margin: auto;
+}
+
+.image-container img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.footer {
+  background-color: black;
+  color: white;
+  padding: 20px;
+  width: 100%; /* Make footer stretch across the page */
+  box-sizing: border-box;
+  text-align: center;
+}
+
+/* Remove bullet points from list items */
+.footer-ul {
+  list-style-type: none;
+}
+
+.bordered-text {
+  border: 2px solid #333; 
+  padding: 10px;
+  border-radius: 5px;
+}
