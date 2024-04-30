@@ -1,0 +1,104 @@
+/* LoginPage.css */
+
+/* Define light peach shade */
+.light-peach {
+  background-color: #ffffff; /* Light peach shade */
+}
+
+/* LoginPage.css */
+
+.login-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-form-container {
+  width: 320px;
+  height: 380px;
+  position: relative;
+  background: linear-gradient(180deg, rgba(253, 219, 208, 0) 0%, rgba(253, 219, 208, 0.29) 100%); /* Peach gradient */
+  border-radius: 2%;
+  border: 4px black solid;
+  backdrop-filter: blur(300px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+}
+
+.heading {
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+.login-form-container {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background-color: #fffcfc; /* Light peach shade background */
+}
+
+.login-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 300px;
+  padding: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 0;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.login-button {
+  width: 200px;
+  height: 40px;
+  background: linear-gradient(180deg, #ffd700 0%, #ff8c00 100%); /* Soft gradient transition in yellow-orange */
+  color: white;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 0;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+.login-button:hover {
+  background: linear-gradient(180deg, #ff8c00 0%, #ffd700 100%);
+}
+
+.forgot-password {
+  margin-top: 10px;
+}
+
+.forgot-password a {
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+}
