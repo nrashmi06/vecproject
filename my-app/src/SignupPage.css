@@ -4,8 +4,10 @@
   background-image: url('./images/login.webp');
   background-repeat: repeat-x;
   background-size: auto 100%;
+  
 }
 .signup-page-container {
+  margin: 4%;
   display: flex;
   justify-content: center;
   align-items: center;

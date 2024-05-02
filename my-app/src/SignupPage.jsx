@@ -5,25 +5,22 @@ import './SignupPage.css';
 import { useNavigate } from 'react-router-dom/dist';  
 import Navbar1 from './navbar1';
 
-
-const SignupPage = ({ history }) => { // Receive history object as props
+const SignupPage = ({ history }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [name, setName] = useState('');
+  const [place, setPlace] = useState('');
   const [error, setError] = useState(null);
   const [signupSuccess, setSignupSuccess] = useState(false);
-  const navigate = useNavigate(); // Use useNavigate() hook to navigate to different pages
+  const navigate = useNavigate(); 
+
   const handleSignup = async (e) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
-      setError("Passwords do not match");
-      return;
-    }
     try {
-      await createUserWithEmailAndPassword(email, password);
+      await createUserWithEmailAndPassword(email, password, name, place);
       setSignupSuccess(true);
-      // Redirect to login page after successful signup
-      navigate('/login'); // Use navigate() function to redirect to login page
+     
+      navigate('/login');
     } catch (error) {
       setError(error.message);
     }
@@ -37,16 +34,20 @@ const SignupPage = ({ history }) => { // Receive history object as props
           <h2 className="heading">Signup</h2>
           <form className="signup-form" onSubmit={handleSignup}>
             <div className="form-group">
+              <label htmlFor="name"><b>Name:</b></label>
+              <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Enter your name" />
+            </div>
+            <div className="form-group">
+              <label htmlFor="place"><b>Place:</b></label>
+              <input type="text" id="place" value={place} onChange={(e) => setPlace(e.target.value)} placeholder="Enter your place" />
+            </div>
+            <div className="form-group">
               <label htmlFor="email"><b>Email:</b></label>
               <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email" />
             </div>
             <div className="form-group">
               <label htmlFor="password"><b>Password:</b></label>
               <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter your password" />
-            </div>
-            <div className="form-group">
-              <label htmlFor="confirmPassword"><b>Confirm Password:</b></label>
-              <input type="password" id="confirmPassword" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder="Confirm your password" />
             </div>
             <button className="signup-button" type="submit"><b>Signup</b></button>
           </form>

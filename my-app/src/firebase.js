@@ -1,8 +1,10 @@
 
-// Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
-import { getAuth, createUserWithEmailAndPassword as createUserWithEmailAndPasswordFirebase,signInWithEmailAndPassword as signInWithEmailAndPasswordFirebase } from 'firebase/auth'; // Rename the imported function
+import { getAuth, createUserWithEmailAndPassword as createUserWithEmailAndPasswordFirebase, signInWithEmailAndPassword as signInWithEmailAndPasswordFirebase } from 'firebase/auth';
 import { sendPasswordResetEmail } from 'firebase/auth';
+import { getDatabase, ref, set } from 'firebase/database';
+
+
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -14,27 +16,41 @@ const firebaseConfig = {
   appId: "1:259098061115:web:52ac3ac1a3ebd52554af1e",
   measurementId: "G-SNVSTYVTN3"
 };
-
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const database = getDatabase(); // Initialize Realtime Database
 
-// Define your createUserWithEmailAndPassword function using the imported function
-const createUserWithEmailAndPassword = async (email, password) => {
+const createUserWithEmailAndPassword = async (email, password, name, place) => {
   try {
+    // Create user in Authentication
     const userCredential = await createUserWithEmailAndPasswordFirebase(auth, email, password);
-    return userCredential.user;
+    const user = userCredential.user;
+    
+    // Store additional user information in Realtime Database
+    await set(ref(database, 'users/' + user.uid), {
+      email: email,
+      name: name,
+      place: place
+    });
+
+    return user;
   } catch (error) {
     throw error;
   }
 };
+
+// Define signInWithEmailAndPassword function
 const signInWithEmailAndPassword = async (email, password) => {
   try {
     const userCredential = await signInWithEmailAndPasswordFirebase(auth, email, password);
+    console.log('User signed in successfully');
     return userCredential.user;
   } catch (error) {
     throw error;
   }
 };
+
+// Define forgotPassword function
 const forgotPassword = async (email) => {
   try {
     await sendPasswordResetEmail(auth, email);
@@ -44,4 +60,4 @@ const forgotPassword = async (email) => {
   }
 };
 
-export { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, forgotPassword}; 
+export { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, forgotPassword };
