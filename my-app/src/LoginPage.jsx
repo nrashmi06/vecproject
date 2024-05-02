@@ -16,13 +16,12 @@ const LoginPage = ({onLogin}) => {
     try {
       const userCredential = await signInWithEmailAndPassword(email, password); 
       console.log('Logged in user:', userCredential.user);
-      
-      setLoggedIn(true); 
+
+    setLoggedIn(true);   
       
     } catch (error) {
       setError(error.message);
     }
-    return loggedIn;
   };
 
   const navigate = useNavigate(); 

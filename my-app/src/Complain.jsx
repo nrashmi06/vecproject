@@ -1,41 +1,58 @@
-import React, { useState } from 'react';
-import './Complain.css'; // Import CSS styles for Complain page
+import React, { useState, useEffect } from 'react';
+import './Complain.css'; 
 import Navbar from './Navbar';
-import emailjs from 'emailjs-com'; // Import EmailJS
-import { auth } from './firebase'; // Import the Firebase auth object
+import emailjs from 'emailjs-com'; 
+import { auth } from './firebase'; 
 
-const Complain = ({onLogout}) => {
-  const user = auth.currentUser;
- const [name, setName] = useState('');
- const [email, setEmail] = useState(user.email);
- const [complaint, setComplaint] = useState('');
+const Complain = ({ onLogout }) => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [complaint, setComplaint] = useState('');
+  const [loading, setLoading] = useState(true); // Flag to indicate whether authentication state is loading
 
- const handleSubmit = async (e) => {
-  console.log(email)
+  useEffect(() => {
+    // Listen for changes in authentication state
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        // If user is authenticated, update email state
+        setEmail(user.email);
+      }
+      setLoading(false); // Update loading state once authentication state is resolved
+    });
+
+    return () => unsubscribe(); // Cleanup function to unsubscribe from the listener
+  }, []);
+  console.log(email )
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const templateParams = {
       from_name: name,
       from_email: email,
       message: complaint,
-      to_email: 'nnm22ad043@nmamit.in' // Replace with your email
+      to_email: 'nnm22ad043@nmamit.in' 
     };
     
     try {
       await emailjs.send('service_oopx3bt', 'template_jsvvj46', templateParams, 'X0_UChe6IQNESorR5');
       console.log('Email sent successfully');
       setName('');
-      setEmail('');
       setComplaint('');
       alert('Your complaint has been submitted successfully!');
     } catch (error) {
       console.error('Error sending email:', error);
       alert('An error occurred while submitting your complaint. Please try again later.');
     }
- };
+  };
 
- return (
+  // Render loading state until authentication state is resolved
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  return (
     <div>
-     <Navbar onLoggingout={onLogout} />
+      <Navbar onLoggingout={onLogout} />
       <div className="complain-container">
         <h2 className='heading'>Complaint Form</h2>
         <form className="complain-form" onSubmit={handleSubmit}>
@@ -51,7 +68,7 @@ const Complain = ({onLogout}) => {
         </form>
       </div>
     </div>
- );
+  );
 };
 
 export default Complain;

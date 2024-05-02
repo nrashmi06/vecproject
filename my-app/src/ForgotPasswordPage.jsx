@@ -1,9 +1,9 @@
-<div className='body'>
-mport React, { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './LoginPage.css';
 import Navbar2 from './Navbar2';
 import { forgotPassword } from './firebase';
+import { Link } from 'react-router-dom';
 
 
 const ForgotPasswordPage = () => {
@@ -17,7 +17,7 @@ const ForgotPasswordPage = () => {
       await forgotPassword(email); // Call the forgotPassword function with the email value
       console.log('Password reset email sent successfully!'); // Show a success message
       alert('Password reset email sent successfully!'); // Show a success message
-      navigate('/login'); // Redirect to the login page
+      navigate('/login'); 
     } catch (error) {
       setError(error.message);
     }
@@ -28,7 +28,7 @@ const ForgotPasswordPage = () => {
   };
 
   return (
-    <div>
+    <div className='body'>
       <Navbar2 />
       <div className="logo-container">
         {/* Truck Ventures logo */}
@@ -53,7 +53,7 @@ const ForgotPasswordPage = () => {
           </form>
           <div style={{ textAlign: 'center', marginTop: '20px' }}>
             <span style={{ fontSize: '16px' }}>Remember your password? </span>
-            <button className="login-button" onClick={handleLoginClick}><b>Login</b></button>
+            <Link to='/login' onClick={handleLoginClick}><b>Login</b></Link>
           </div>
         </div>
         <div className="logo-container1">
