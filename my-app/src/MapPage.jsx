@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import './MapPage.css'; // Import CSS file for styling
 import Navbar from './Navbar';
 import 'leaflet/dist/leaflet.css';
-import L, { marker } from 'leaflet';
+import L from 'leaflet';
 import markerIcon from './images/marker.png';
 
 const streets = [
@@ -21,48 +21,51 @@ const streets = [
   'Maroli', 'Nanthoor'
 ];
 
-
-
 const customIcon = new L.Icon({
   iconUrl: markerIcon,
   iconSize: [32, 32],
   iconAnchor: [16, 32],
   popupAnchor: [0, -32],
 });
-const MapPage = ({onLogout}) => {
+
+const MapPage = ({ onLogout }) => {
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 10; // Number of items per page
+
+  const handlePageClick = (pageIndex) => {
+    setCurrentPage(pageIndex);
+  };
+
+  const pageCount = Math.ceil(streets.length / itemsPerPage);
+  const pageNumbers = Array.from({ length: pageCount }, (_, i) => i);
+
+  const startIndex = currentPage * itemsPerPage;
+  const endIndex = Math.min(startIndex + itemsPerPage, streets.length);
 
   return (
     <div>
       <Navbar onLoggingout={onLogout} />
       <div className="map-container">
-       <MapContainer center={[12.9141, 74.856]} zoom={12} style={{ width: '100%', height: '400px' }}>
-          <TileLayer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          {/* Example Marker */}
+        <MapContainer center={[12.9141, 74.856]} zoom={12} style={{ width: '100%', height: '400px' }}>
+          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
           <Marker position={[12.9141, 74.856]} icon={customIcon}>
-        <Popup>
-          place name.
-        </Popup>
-      </Marker>
+            <Popup>Kadri</Popup>
+          </Marker>
         </MapContainer>
-        
+        <hr style={{ border: '2px solid black' }} />
         <div className="info-container">
           <div className="additional-info">
             <div className="distance-travelled-box">
               <h3>Distance to be Traveled:</h3>
-              {/* Placeholder for distance to be traveled */}
               <p>200 KM</p>
             </div>
             <div className="fuel-consumed-box">
               <h3>Fuel Consumed:</h3>
-              {/* Placeholder for fuel consumed */}
               <p>15 liters</p>
             </div>
           </div>
           <div className="route-info">
             <h2>THE ROUTE</h2>
-            {/* Placeholder for route table */}
             <table>
               <thead>
                 <tr>
@@ -71,14 +74,29 @@ const MapPage = ({onLogout}) => {
                 </tr>
               </thead>
               <tbody>
-                {streets.map((street, index) => (
-                  <tr key={index}>
+                {streets.slice(startIndex, endIndex).map((street, index) => (
+                  <tr key={startIndex + index}>
                     <td>{street}</td>
-                    <td>{index + 1}</td> {/* Placeholder for distance */}
+                    <td>{startIndex + index + 1}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
+            <div className="number-counter">
+              {pageNumbers.map((page) => (
+                <span
+                  key={page}
+                  onClick={() => handlePageClick(page)}
+                  style={{
+                    marginRight: '10px',
+                    cursor: 'pointer',
+                    fontWeight: currentPage === page ? 'bold' : 'normal',
+                  }}
+                >
+                  {page + 1}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </div>

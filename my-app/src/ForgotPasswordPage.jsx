@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+<div className='body'>
+mport React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './LoginPage.css';
 import Navbar2 from './Navbar2';

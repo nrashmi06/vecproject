@@ -1,80 +1,79 @@
 /* Complain.css */
 
 .complain-container {
-    max-width: 800px;
-    margin-top: 30px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
+  max-width: 800px;
+  margin: 30px auto; /* Center the container horizontally */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.heading {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+  text-align: center; /* Center the heading text */
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input[type='text'],
+input[type='tel'],
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+textarea {
+  resize: vertical; /* Allow vertical resizing of textarea */
+}
+
+.submit-button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background-color: #ffd829;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+  background-color: #ffb253;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 600px) {
+  .complain-container {
+    padding: 10px;
   }
-  
+
   .heading {
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #333;
+    font-size: 20px;
   }
-  
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
+
   input[type='text'],
   input[type='tel'],
   textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
+    font-size: 14px;
   }
-  
-  textarea {
-    resize: vertical; /* Allow vertical resizing of textarea */
-  }
-  
+
   .submit-button {
-    display: block;
-    width: 100%;
-    padding: 12px;
-    background-color: #ffd829;
-    color: black;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    font-size: 14px;
   }
-  
-  .submit-button:hover {
-    background-color: #ffb253;
-  }
-  
-  /* Responsive styles */
-  @media screen and (max-width: 600px) {
-    .complain-container {
-      padding: 10px;
-    }
-  
-    .heading {
-      font-size: 20px;
-    }
-  
-    input[type='text'],
-    input[type='tel'],
-    textarea {
-      font-size: 14px;
-    }
-  
-    .submit-button {
-      font-size: 14px;
-    }
-  }
-  
+}

@@ -30,7 +30,7 @@ const SignupPage = ({ history }) => { // Receive history object as props
   };
 
   return (
-    <div>
+    <div className='body'>
       <Navbar1 />
       <div className="signup-page-container">
         <div className="signup-form-container">

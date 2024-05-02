@@ -1,113 +1,131 @@
 .map-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-  }
-  
-  .map-container .info-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-  }
-  .map-container .additional-info {
-    display: flex;
-    justify-content: space-between;
-    width: 80%;
-    max-width: 800px;
-  }
-  
-  .map-container .distance-travelled-box,
-  .map-container .fuel-consumed-box {
-    background-color: #F1F1F1;
-    border-radius: 10px;
-    height: 100px;
-    border: 5px solid black;
-    padding: 10px;
-    margin-bottom: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-  }
-  
-  .map-container .route-info {
-    background-color: #F1F1F1;
-    border-radius: 10px;
-    border: 5px solid black;
-    padding: 10px;
-    width: 80%;
-    max-width: 800px;
-  }
-  
-  .map {
-    width: 100%;
-    max-width: 955px;
-    border: 1px solid black;    
-  }
-  
-  .map-image {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    border: 5px solid black;
-  }
-  
-  .info-container {
-    width: 100%;
-    max-width: 955px;
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
-  }
-  
-  .additional-info {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .distance-travelled-box,
-  .fuel-consumed-box {
-    background-color: #F1F1F1;
-    border-radius: 10px;
-    height: 200px;
-    border: 5px solid black;
-    padding: 10px;
-    margin-bottom: 2%;
-    margin-top: 2%;
-    margin: 15px;
-    display: flex;
-    width: 100%;
-  }
-  .route-info {
-    background-color: #F1F1F1;
-    border-radius: 10px;
-    border: 5px solid black;
-    padding: 10px;
-    width: 100%;
-    margin-top: 20px;
-  }
-  
-  .route-info table {
-    width: 100%;
-    border-collapse: collapse;
-    border-style: double;
-  }
-  
-  .route-info th,
-  .route-info td {
-    padding: 8px;
-    text-align: left;
-    font-size: 16px; /* Adjust font size as needed */
-  }
-  
-  .route-info th {
-    background-color: #ddd; /* Header background color */
-  }
-  
-  .route-info tbody tr:nth-child(even) {
-    background-color: #f2f2f2; /* Alternate row background color */
-  }
-  
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.map-container .info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.map-container .additional-info {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+}
+
+.map-container .distance-travelled-box,
+.map-container .fuel-consumed-box {
+  background-color: #f1f1f1;
+  border-radius: 10px;
+  height: 100px;
+  border: 5px solid black;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.map-container .route-info {
+  background-color: #f1f1f1;
+  border-radius: 10px;
+  border: 5px solid black;
+  padding: 10px;
+  width: 100%;
+  margin: 10px;
+}
+
+.map {
+  width: 100%;
+  border: 1px solid black;
+}
+
+.map-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  border: 5px solid black;
+}
+
+.info-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.additional-info {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.distance-travelled-box,
+.fuel-consumed-box {
+  background-color: #f1f1f1;
+  border-radius: 1px;
+  height: 200px;
+  border: 5px solid black;
+  padding: 15px; /* Adjusted padding */
+  margin-bottom: 20px; /* Adjusted margin */
+  display: flex;
+  width: 100%;
+  margin-left: 5%;
+}
+
+.route-info {
+  background-color: #f1f1f1;
+  border-radius: 1px;
+  padding: 15px; 
+  width: 100%;
+  margin-top: 20px;
+}
+
+.route-info table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ccc;
+}
+
+.route-info th,
+.route-info td {
+  padding: 10px; 
+  text-align: left;
+  font-size: 16px;
+  border: 1px solid #ccc;
+}
+
+.route-info th {
+  background-color: #FFC123;
+}
+
+.route-info tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.number-counter {
+  width: 50%;
+  margin-top: 20px; /* Adjusted margin */
+  display: flex;
+}
+
+.number-counter span {
+  justify-content: center;
+  margin: 2px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.number-counter span:hover {
+  text-decoration: underline;
+}
+
+.number-counter span.active {
+  background-color: #FFC123;
+}

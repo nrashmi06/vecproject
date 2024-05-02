@@ -27,7 +27,7 @@ const Info = ({onLogout}) => {
   ];
 
   return (
-    <div>
+    <div >
       <Navbar onLoggingout={onLogout} />
       <div className="info-container">
         <h2 className='heading'>Waste Material Information</h2>
