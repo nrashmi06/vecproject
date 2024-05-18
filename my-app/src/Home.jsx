@@ -46,7 +46,7 @@ const Home = () => {
             </div>
           </div>
           <hr style={{ borderColor: '#555' }} />
-          <p style={{ fontSize: '12px' }}>&copy; 2024 Your Website. All rights reserved. | Designed by TruckVenctures</p>
+          <p style={{ fontSize: '12px' }}>&copy; 2024 Website. All rights reserved. | Designed by TruckVenctures</p>
         </footer>
       </div>
     </div>

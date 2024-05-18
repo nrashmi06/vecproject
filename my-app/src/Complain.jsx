@@ -3,25 +3,36 @@ import './Complain.css';
 import Navbar from './Navbar';
 import emailjs from 'emailjs-com'; 
 import { auth } from './firebase'; 
+import { getDatabase, ref, onValue } from "firebase/database"; // Import Firebase Realtime Database functions
 
 const Complain = ({ onLogout }) => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [complaint, setComplaint] = useState('');
-  const [loading, setLoading] = useState(true); // Flag to indicate whether authentication state is loading
+ const [name, setName] = useState('');
+ const [email, setEmail] = useState('');
+ const [complaint, setComplaint] = useState('');
+ const [loading, setLoading] = useState(true); 
 
-  useEffect(() => {
-    // Listen for changes in authentication state
-    const unsubscribe = auth.onAuthStateChanged((user) => {
+ useEffect(() => {
+    const db = getDatabase();
+    const unsubscribeAuth = auth.onAuthStateChanged((user) => {
       if (user) {
-        // If user is authenticated, update email state
+       
         setEmail(user.email);
+        
+        const userRef = ref(db, `users/${user.uid}`); 
+        const unsubscribeDb = onValue(userRef, (snapshot) => {
+          const userData = snapshot.val();
+          if (userData && userData.name) {
+            setName(userData.name); 
+          }
+        });
+        console.log(email,name);
+        return () => unsubscribeDb();
       }
-      setLoading(false); // Update loading state once authentication state is resolved
+      setLoading(false); 
     });
 
-    return () => unsubscribe(); // Cleanup function to unsubscribe from the listener
-  }, []);
+    return () => unsubscribeAuth(); 
+ }, []);
   console.log(email )
 
   const handleSubmit = async (e) => {
@@ -45,11 +56,6 @@ const Complain = ({ onLogout }) => {
     }
   };
 
-  // Render loading state until authentication state is resolved
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <div>
       <Navbar onLoggingout={onLogout} />
@@ -58,7 +64,9 @@ const Complain = ({ onLogout }) => {
         <form className="complain-form" onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="name"><b>Name:</b></label>
-            <input type="text" id="name" name="name" placeholder='Enter your name' value={name} onChange={(e) => setName(e.target.value)} required />
+            <input type="text" id="name" name="name" placeholder='Enter your name' value={name} onChange={(e) => setName(e.target.value)} required   readOnly={loading} // Make the input field read-only while loading
+    onPaste={(e) => e.preventDefault()} // Prevent pasting into the input field 
+    />
           </div>
           <div className="form-group">
             <label htmlFor="complaint"><b>Complaint:</b></label>
