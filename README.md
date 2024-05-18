@@ -74,5 +74,8 @@ This project serves the following purposes:
 ![Complain Page](complain.png)
 
 ## Contact
-
 For any inquiries or suggestions, please reach out to [Rashmi N](https://github.com/nrashmi06).
+
+## Note 
+The result for optimized route has been obtained from KNN algorithm with TSP function on the data set.
+
