@@ -8,13 +8,13 @@ import { getDatabase, ref, set } from 'firebase/database';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyD6aMjqeovzYU5HKE2_Vrax54OnR8cs6sw",
-  authDomain: "vec-66f73.firebaseapp.com",
-  projectId: "vec-66f73",
-  storageBucket: "vec-66f73.appspot.com",
-  messagingSenderId: "259098061115",
-  appId: "1:259098061115:web:52ac3ac1a3ebd52554af1e",
-  measurementId: "G-SNVSTYVTN3"
+  apiKey: "",
+  authDomain: "",
+  projectId: "",
+  storageBucket: "",
+  messagingSenderId: "",
+  appId: "",
+  measurementId: ""
 };
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
